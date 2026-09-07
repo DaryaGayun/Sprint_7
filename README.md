@@ -1,7 +1,7 @@
 # API tests for Yandex Samokat
 
 Автотесты для учебного сервиса «Яндекс.Самокат».
-Реализован по паттерну Page Object, с параметризацией тестов и отчётом в Allure.
+Его документация: qa-scooter.praktikum-services.ru/docs/
 
 ## Технологии
 
