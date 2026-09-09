@@ -8,6 +8,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from helpers import create_order
 from data import BASE_ORDER_DATA, COLOR_TEST_DATA
 
+@allure.feature("Заказы")
+@allure.story("Создание заказа")
 class TestOrderCreation:
     @allure.title("Создание заказа с цветами: {description}")
     @pytest.mark.parametrize("color, description", COLOR_TEST_DATA, 

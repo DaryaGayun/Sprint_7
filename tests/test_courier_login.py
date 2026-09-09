@@ -5,6 +5,8 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from helpers import generate_random_string, login_courier
 
+@allure.feature("Курьеры")
+@allure.story("Логин курьера")
 class TestCourierLogin:
     @allure.title("Успешный логин курьера")
     @allure.step("Тест успешного логина курьера")

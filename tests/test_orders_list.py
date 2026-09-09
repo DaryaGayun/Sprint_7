@@ -8,6 +8,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from helpers import get_orders_list
 from urls import Urls
 
+@allure.feature("Заказы")
+@allure.story("Списки заказов")
 class TestOrdersList:
     @allure.title("Получение списка заказов")
     @allure.step("Тест получения списка заказов")

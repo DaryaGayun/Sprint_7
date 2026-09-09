@@ -15,11 +15,7 @@ def register_new_courier_and_return_login_password():
     login = generate_random_string(10)
     password = generate_random_string(10)
     first_name = generate_random_string(10)
-    payload = {
-        "login": login,
-        "password": password,
-        "firstName": first_name
-    }
+    payload = {"login": login, "password": password, "firstName": first_name}
     response = requests.post(Urls.CREATE_COURIER, data=payload)
     if response.status_code == 201:
         login_pass.append(login)
@@ -29,17 +25,12 @@ def register_new_courier_and_return_login_password():
 
 @step("Логин курьера с логином {login}")
 def login_courier(login, password):
-    """Логин курьера"""
-    payload = {
-        "login": login,
-        "password": password
-    }
+    payload = {"login": login, "password": password}
     response = requests.post(Urls.LOGIN_COURIER, json=payload)
     return response
 
 @step("Получение ID курьера для логина {login}")
 def get_courier_id(login, password):
-    """Получение ID курьера после успешного логина"""
     response = login_courier(login, password)
     if response.status_code == 200:
         return response.json().get("id")
