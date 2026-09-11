@@ -1,46 +1,31 @@
-import requests
 import random
 import string
-from urls import Urls
-from allure import step
 
-@step("Генерация случайной строки длиной {length}")
-def generate_random_string(length):
+def generate_random_string(length=10):
     letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(length))
+    return ''.join(random.choice(letters) for _ in range(length))
 
-@step("Логин курьера с логином {login}")
-def login_courier(login, password):
-    payload = {"login": login, "password": password}
-    response = requests.post(Urls.LOGIN_COURIER, json=payload)
-    return response
+def generate_courier_data():
+    return {
+        "login": generate_random_string(8),
+        "password": generate_random_string(12),
+        "firstName": generate_random_string(6),
+    }
 
-@step("Получение ID курьера для логина {login}")
-def get_courier_id(login, password):
-    response = login_courier(login, password)
-    if response.status_code == 200:
-        return response.json().get("id")
-    return None
+def generate_courier_data_without_first_name():
+    return {
+        "login": generate_random_string(8),
+        "password": generate_random_string(12),
+    }
 
-@step("Удаление курьера с ID {courier_id}")
-def delete_courier(courier_id):
-    return requests.delete(f"{Urls.DELETE_COURIER}{courier_id}")
+def generate_courier_data_missing_login():
+    return {
+        "password": generate_random_string(12),
+        "firstName": generate_random_string(6),
+    }
 
-@step("Создание заказа с данными: {order_data}")
-def create_order(order_data):
-    return requests.post(Urls.CREATE_ORDER, json=order_data)
-
-@step("Получение заказа по треку {track_number}")
-def get_order_by_track(track_number):
-    return requests.get(f"{Urls.GET_ORDER_BY_TRACK}?t={track_number}")
-
-@step("Получение списка заказов")
-def get_orders_list():
-    return requests.get(Urls.GET_ORDERS_LIST)
-
-@step("Удаление тестового заказа с треком {track_number}")
-def delete_test_order(track_number):
-    try:
-        return requests.delete(f"{Urls.DELETE_ORDER}{track_number}")
-    except:
-        return None
+def generate_courier_data_missing_password():
+    return {
+        "login": generate_random_string(8),
+        "firstName": generate_random_string(6),
+    }

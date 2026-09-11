@@ -13,7 +13,6 @@
 ## Технологии
 
 - Python
-- Selenium
 - PyTest
 - Allure
 
@@ -23,9 +22,13 @@
 /
 ├─ allure-results/
 ├─ tests/
+├─ api_client.py
 ├─ conftest.py
+├─ data.py
+├─ helpers.py
 ├─ ...
 ```
+
 ## Установка
 ```
 pip install -r requirements.txt
@@ -34,4 +37,14 @@ pip install -r requirements.txt
 ## Запуск тестов
 ```
 pytest tests/ -v
+```
+
+# Запустить тесты с генерацией Allure-отчёта
+```
+pytest tests/ -v --alluredir=allure_results
+```
+
+# Сгенерировать HTML-отчёт
+```
+allure serve allure_results
 ```
