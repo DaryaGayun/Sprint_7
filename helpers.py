@@ -13,19 +13,16 @@ def generate_courier_data():
     }
 
 def generate_courier_data_without_first_name():
-    return {
-        "login": generate_random_string(8),
-        "password": generate_random_string(12),
-    }
+    data = generate_courier_data()
+    del data["firstName"]
+    return data
 
 def generate_courier_data_missing_login():
-    return {
-        "password": generate_random_string(12),
-        "firstName": generate_random_string(6),
-    }
+    data = generate_courier_data()
+    del data["login"]
+    return data
 
 def generate_courier_data_missing_password():
-    return {
-        "login": generate_random_string(8),
-        "firstName": generate_random_string(6),
-    }
+    data = generate_courier_data()
+    del data["password"]
+    return data
